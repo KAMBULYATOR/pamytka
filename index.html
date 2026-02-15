@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobr Empire</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .header { margin-bottom: 20px; }
+        .avatar { width: 80px; height: 80px; border-radius: 50%; background: #e67e22; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+        .balance { font-size: 32px; color: #f1c40f; margin: 10px 0; font-weight: bold; }
+        .role { color: #3498db; font-weight: bold; margin-bottom: 20px; }
+        
+        .clicker-btn {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 8px solid #8e44ad;
+            background: #9b59b6;
+            color: white;
+            font-size: 60px;
+            cursor: pointer;
+            transition: transform 0.1s;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        .clicker-btn:active { transform: scale(0.95); }
+        
+        .shop { border-top: 1px solid #444; pt: 20px; }
+        .shop-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #3d3d3d;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        .buy-btn { background: #27ae60; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; }
+        .buy-btn:disabled { background: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="avatar">🦫</div>
+            <h2 id="username">Бобер</h2>
+            <div class="role" id="user-role">Новичок</div>
+            <div class="balance">💰 <span id="coin-count">0</span></div>
+        </div>
+
+        <button class="clicker-btn" onclick="mine()">🪵</button>
+        <p>Грызи дерево, чтобы заработать!</p>
+
+        <div class="shop">
+            <h3>Магазин ролей</h3>
+            <div class="shop-item">
+                <span>Мастер плотин</span>
+                <button class="buy-btn" onclick="buyRole('Мастер плотин', 500)">500 💰</button>
+            </div>
+            <div class="shop-item">
+                <span>Король Бобров</span>
+                <button class="buy-btn" onclick="buyRole('Король Бобров', 2000)">2000 💰</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        // Загрузка данных
+        let coins = parseInt(localStorage.getItem('bobr_coins')) || 0;
+        let role = localStorage.getItem('bobr_role') || 'Новичок';
+
+        // Отображение данных
+        document.getElementById('coin-count').innerText = coins;
+        document.getElementById('user-role').innerText = role;
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            document.getElementById('username').innerText = tg.initDataUnsafe.user.first_name;
+        }
+
+        // Клик по дереву
+        function mine() {
+            coins += 1;
+            updateUI();
+        }
+
+        // Покупка роли
+        function buyRole(newRole, price) {
+            if (coins >= price) {
+                coins -= price;
+                role = newRole;
+                updateUI();
+                tg.showAlert("Поздравляем! Теперь ты: " + newRole);
+            } else {
+                tg.showAlert("Недостаточно bobr-coin!");
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('coin-count').innerText = coins;
+            document.getElementById('user-role').innerText = role;
+            localStorage.setItem('bobr_coins', coins);
+            localStorage.setItem('bobr_role', role);
+        }
+    </script>
+</body>
+</html>
