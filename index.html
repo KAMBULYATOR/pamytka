@@ -6,42 +6,49 @@
     <title>Приглашение на свадьбу: Станислав и Мария</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@200;300&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            50% { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        }
+
         body {
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* Белый фон */
+            background-color: #ffffff;
             font-family: 'Playfair Display', serif;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             color: #333;
+            overflow-x: hidden;
         }
 
         .invitation {
             max-width: 500px;
             width: 90%;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            animation: fadeInUp 1.2s ease-out;
         }
 
-        /* Имена Станислава и Марии в самом верху */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem; /* Крупный красивый шрифт */
+            font-size: clamp(3rem, 10vw, 4.5rem);
             font-weight: normal;
-            margin: 0 0 20px 0; /* Отступ снизу до картинки */
+            margin: 0 0 30px 0;
             color: #2c3e50;
         }
 
-        /* Картинка с кольцом ТЕПЕРЬ НИЖЕ имен */
         .top-image {
             width: 100%;
-            max-width: 350px;
+            max-width: 380px;
             height: auto;
-            margin-bottom: 40px; /* Отступ до текста "Дорогие гости" */
-            /* Убедись, что картинка называется ring.png и лежит в той же папке */
-            content: url('IMG_1687.jpeg'); 
+            margin-bottom: 40px;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -50,29 +57,29 @@
         .guests-text {
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 5px; /* Сильный разряд для стиля */
+            letter-spacing: 6px;
             font-size: 1.8rem;
-            margin-top: 0;
             font-weight: 200;
             color: #555;
+            margin-bottom: 20px;
         }
 
         .main-text {
             font-size: 1.2rem;
-            line-height: 1.7;
-            margin: 25px 0 50px;
+            line-height: 1.8;
+            margin-bottom: 50px;
             font-style: italic;
             color: #666;
         }
 
-        /* Стили календаря */
         .calendar-container {
             display: inline-block;
             background: #fdfdfd;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid #f0f0f0;
+            margin-bottom: 50px;
         }
 
         .month-title {
@@ -86,16 +93,14 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 12px;
-            text-align: center;
         }
 
         .day-name {
             font-weight: bold;
-            font-size: 0.85rem;
-            color: #888;
-            padding-bottom: 12px;
+            font-size: 0.8rem;
+            color: #aaa;
+            padding-bottom: 10px;
             border-bottom: 1px solid #eee;
-            margin-bottom: 10px;
         }
 
         .day {
@@ -105,30 +110,44 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #444;
         }
 
-        /* Выделение 10 августа 2026 */
         .marked {
-            color: #d13d3d; /* Красный цвет для даты */
+            color: #d13d3d;
             font-weight: bold;
         }
 
-        /* Красное сердечко вокруг даты 10 */
         .marked::after {
             content: '❤';
             position: absolute;
-            font-size: 2.5rem;
-            color: rgba(209, 61, 61, 0.2); /* Полупрозрачное сердечко */
-            z-index: 0;
+            font-size: 2.6rem;
+            color: rgba(209, 61, 61, 0.15);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        
-        .day span {
-            position: relative;
-            z-index: 1;
+
+        .day span { position: relative; z-index: 1; }
+
+        /* Кнопка подтверждения Telegram */
+        .btn-confirm {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: #24A1DE; /* Фирменный цвет Telegram */
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .btn-confirm:hover {
+            background-color: #1c82b3;
+            transform: scale(1.05);
+            animation: none;
         }
     </style>
 </head>
@@ -138,7 +157,7 @@
     
     <h1>Станислав и Мария</h1>
 
-    <img src="ring.png" alt="Свадебные кольца" class="top-image">
+    <img src="ring.png" alt="Приглашение" class="top-image">
 
     <div class="guests-text">Дорогие гости</div>
     
@@ -178,6 +197,12 @@
             <div class="day"><span>31</span></div>
         </div>
     </div>
+
+    <br>
+    <a href="https://t.me/твой_ник?text=Привет!%20Мы%20получили%20приглашение%20и%20с%20радостью%20придем%20на%20вашу%20свадьбу!" class="btn-confirm">
+        Подтвердить в Telegram
+    </a>
+
 </div>
 
 </body>
