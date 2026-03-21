@@ -3,234 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Приглашение на свадьбу: Станислав и Мария</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@200;300&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <title>Станислав и Мария | 10.08.2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@200;300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #ffffff;
-        }
+        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #ffffff; scroll-behavior: smooth; }
+        body { font-family: 'Playfair Display', serif; display: flex; justify-content: center; color: #333; }
+        .invitation { max-width: 400px; width: 100%; box-sizing: border-box; text-align: center; padding: 40px 15px; }
+        
+        h1 { font-family: 'Great Vibes', cursive; font-size: clamp(2.5rem, 12vw, 3.5rem); margin: 0 0 20px 0; color: #2c3e50; line-height: 1.2; }
+        .top-image { width: 100%; max-width: 380px; height: auto; margin: 0 auto 30px; display: block; }
 
-        body {
-            font-family: 'Playfair Display', serif;
-            display: flex;
-            justify-content: center;
-            color: #333;
-        }
+        /* Таймер */
+        .timer-container { display: flex; justify-content: space-around; margin-bottom: 40px; font-family: 'Oswald', sans-serif; }
+        .timer-item span { display: block; font-size: 1.5rem; color: #2c3e50; }
+        .timer-item label { font-size: 0.7rem; color: #aaa; text-transform: uppercase; }
 
-        .invitation {
-            max-width: 400px; 
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            padding: 40px 15px;
-        }
+        .section-title { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 4px; font-size: 1.3rem; font-weight: 300; color: #555; margin: 40px 0 20px; }
+        .main-text { font-size: 1.1rem; line-height: 1.6; font-style: italic; color: #666; margin-bottom: 30px; }
 
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.5rem, 12vw, 3.5rem);
-            margin: 0 0 20px 0;
-            color: #2c3e50;
-            line-height: 1.2;
-        }
+        /* Программа дня */
+        .timeline { text-align: left; margin: 0 auto 40px; max-width: 300px; font-family: 'Oswald', sans-serif; font-weight: 200; }
+        .timeline-item { display: flex; margin-bottom: 15px; align-items: center; border-left: 1px solid #eee; padding-left: 20px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -5px; width: 9px; height: 9px; background: #d13d3d; border-radius: 50%; opacity: 0.6; }
+        .time { font-weight: 400; min-width: 50px; color: #2c3e50; margin-right: 15px; }
+        .event { color: #666; font-size: 0.95rem; }
 
-        .top-image {
-            width: 100%;
-            max-width: 380px;
-            height: auto;
-            margin-bottom: 30px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* Календарь */
+        .calendar-container { background: #fdfdfd; padding: 20px 10px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; margin-bottom: 40px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .day { padding: 8px 0; font-size: 1rem; position: relative; display: flex; justify-content: center; }
+        .marked { color: #d13d3d; font-weight: bold; }
+        .marked::after { content: '❤'; position: absolute; font-size: 2.2rem; color: rgba(209, 61, 61, 0.15); top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-        .guests-text {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 1.5rem;
-            font-weight: 200;
-            color: #555;
-            margin-bottom: 15px;
-        }
+        /* Пожелания про подарки */
+        .wish-block { background: #fffafb; padding: 20px; border-radius: 10px; border: 1px dashed #eec; margin-bottom: 40px; font-size: 0.95rem; line-height: 1.5; color: #777; font-style: italic; }
 
-        .main-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            font-style: italic;
-            color: #666;
-            padding: 0 10px;
-        }
+        .btn-confirm { display: block; margin: 20px auto; padding: 15px 0; width: 90%; background-color: #24A1DE; color: #fff; text-decoration: none; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; border-radius: 50px; font-size: 0.9rem; }
 
-        .calendar-container {
-            width: 100%;
-            box-sizing: border-box;
-            background: #fdfdfd;
-            padding: 20px 10px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-            border: 1px solid #f0f0f0;
-            margin-bottom: 40px;
-        }
-
-        .month-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-        }
-
-        .day-name {
-            font-weight: bold;
-            font-size: 0.7rem;
-            color: #aaa;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .day {
-            padding: 8px 0;
-            font-size: 1rem;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .marked {
-            color: #d13d3d;
-            font-weight: bold;
-        }
-
-        .marked::after {
-            content: '❤';
-            position: absolute;
-            font-size: 2.2rem;
-            color: rgba(209, 61, 61, 0.15);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .day span { position: relative; z-index: 1; }
-
-        .btn-confirm {
-            display: block;
-            margin: 0 20px;
-            padding: 15px 0;
-            background-color: #24A1DE;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-        }
-
-        /* КЛАССЫ ДЛЯ АНИМАЦИИ ПРИ ПРОКРУТКЕ */
-
-        /* Элемент скрыт (начальное состояние) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px); /* Смещение вниз */
-            transition: all 1s ease-out; /* Время и плавность анимации */
-        }
-
-        /* Элемент появляется (состояние после прокрутки) */
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0px); /* Возвращение на место */
-        }
-
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
 <div class="invitation">
-    
     <h1>Станислав и Мария</h1>
-    <img src="IMG_1687.jpeg" alt="Приглашение" class="top-image">
+    <img src="IMG_1687.jpeg" alt="Свадьба" class="top-image">
+
+    <div class="timer-container reveal">
+        <div class="timer-item"><span id="days">00</span><label>Дней</label></div>
+        <div class="timer-item"><span id="hours">00</span><label>Часов</label></div>
+        <div class="timer-item"><span id="mins">00</span><label>Минут</label></div>
+    </div>
 
     <div class="reveal">
-        <div class="guests-text">Дорогие гости</div>
+        <div class="section-title">Дорогие гости</div>
+        <p class="main-text">Будем рады видеть вас на нашей свадьбе!</p>
         
-        <p class="main-text">
-            С большим удовольствием приглашаем Вас<br>
-            на наш первый семейный праздник — нашу свадьбу!
-        </p>
-
         <div class="calendar-container">
-            <div class="month-title">Август 2026</div>
+            <div style="font-family: 'Great Vibes'; font-size: 2rem; margin-bottom: 15px;">Август 2026</div>
             <div class="calendar-grid">
-                <div class="day-name">ПН</div><div class="day-name">ВТ</div><div class="day-name">СР</div>
-                <div class="day-name">ЧТ</div><div class="day-name">ПТ</div><div class="day-name">СБ</div>
-                <div class="day-name">ВС</div>
-
-                <div class="day"></div><div class="day"></div><div class="day"></div>
-                <div class="day"></div><div class="day"></div>
-                <div class="day"><span>1</span></div><div class="day"><span>2</span></div>
-                <div class="day"><span>3</span></div><div class="day"><span>4</span></div>
-                <div class="day"><span>5</span></div><div class="day"><span>6</span></div>
-                <div class="day"><span>7</span></div><div class="day"><span>8</span></div>
-                <div class="day"><span>9</span></div>
-
-                <div class="day marked"><span>10</span></div> 
-                
-                <div class="day"><span>11</span></div><div class="day"><span>12</span></div>
-                <div class="day"><span>13</span></div><div class="day"><span>14</span></div>
-                <div class="day"><span>15</span></div><div class="day"><span>16</span></div>
-                <div class="day"><span>17</span></div><div class="day"><span>18</span></div>
-                <div class="day"><span>19</span></div><div class="day"><span>20</span></div>
-                <div class="day"><span>21</span></div><div class="day"><span>22</span></div>
-                <div class="day"><span>23</span></div><div class="day"><span>24</span></div>
-                <div class="day"><span>25</span></div><div class="day"><span>26</span></div>
-                <div class="day"><span>27</span></div><div class="day"><span>28</span></div>
-                <div class="day"><span>29</span></div><div class="day"><span>30</span></div>
-                <div class="day"><span>31</span></div>
+                <div style="font-size: 0.7rem; color: #aaa;">ПН</div><div style="font-size: 0.7rem; color: #aaa;">ВТ</div><div style="font-size: 0.7rem; color: #aaa;">СР</div><div style="font-size: 0.7rem; color: #aaa;">ЧТ</div><div style="font-size: 0.7rem; color: #aaa;">ПТ</div><div style="font-size: 0.7rem; color: #aaa;">СБ</div><div style="font-size: 0.7rem; color: #aaa;">ВС</div>
+                <div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day"></div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div>
+                <div class="day marked"><span>10</span></div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
             </div>
         </div>
     </div>
 
     <div class="reveal">
-        <a href="https://t.me/zmariazv?text=Привет!%20Мы%20получили%20приглашение%20и%20с%20радостью%20придем%20на%20вашу%20свадьбу!" class="btn-confirm">
-            Подтвердить в Telegram
-        </a>
+        <div class="section-title">Программа дня</div>
+        <div class="timeline">
+            <div class="timeline-item"><div class="time">15:00</div><div class="event">Сбор гостей на банкете</div></div>
+            <div class="timeline-item"><div class="time">15:30</div><div class="event">Фотосессия</div></div>
+            <div class="timeline-item"><div class="time">16:00</div><div class="event">Начало банкета</div></div>
+            <div class="timeline-item"><div class="time">21:00</div><div class="event">Свадебный торт</div></div>
+            <div class="timeline-item"><div class="time">21:30</div><div class="event">Шоу-программа</div></div>
+            <div class="timeline-item"><div class="time">22:00</div><div class="event">Окончание вечера</div></div>
+        </div>
     </div>
 
+    <div class="reveal">
+        <div class="section-title">Место проведения</div>
+        <p style="font-family: 'Oswald'; font-weight: 400; font-size: 1.2rem; margin-bottom: 5px;">Банкетный зал "СОБЛАЗН"</p>
+        <p style="color: #888; margin-top: 0;">с. Устье, ул. Октябрьская, д.9</p>
+    </div>
+
+    <div class="reveal">
+        <div class="section-title">Пожелание</div>
+        <div class="wish-block">
+            Не ломайте голову на счет подарка, мы не сможем взять что-то объемное. Конверт — лучший вариант.
+        </div>
+    </div>
+
+    <div class="reveal">
+        <a href="https://t.me/твой_ник?text=Привет!%20Мы%20придем!" class="btn-confirm">Подтвердить в Telegram</a>
+    </div>
 </div>
 
 <script>
-    // Функция, которая проверяет, находится ли элемент в поле зрения
+    function updateTimer() {
+        const gap = new Date("August 10, 2026 00:00:00").getTime() - new Date().getTime();
+        document.getElementById("days").innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((gap % (86400000)) / 3600000);
+        document.getElementById("mins").innerText = Math.floor((gap % 3600000) / 60000);
+    }
+    setInterval(updateTimer, 1000); updateTimer();
+
     function reveal() {
-        var reveals = document.querySelectorAll(".reveal"); // Находим все элементы с классом reveal
-
+        var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight; // Высота окна браузера
-            var elementTop = reveals[i].getBoundingClientRect().top; // Расстояние от верха окна до элемента
-            var elementVisible = 150; // Точка, когда элемент считается видимым (чем больше, тем позже появится)
-
-            // Если элемент вошел в поле зрения, добавляем ему класс active
-            if (elementTop < windowHeight - elementVisible) {
+            if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) {
                 reveals[i].classList.add("active");
-            } 
+            }
         }
     }
-
-    // Запускаем функцию reveal при загрузке страницы и при каждом событии прокрутки
-    window.addEventListener("load", reveal);
-    window.addEventListener("scroll", reveal);
+    window.addEventListener("scroll", reveal); window.addEventListener("load", reveal);
 </script>
-
 </body>
 </html>
