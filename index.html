@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение на свадьбу</title>
+    <title>Приглашение на свадьбу: Станислав и Мария</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@200;300&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
+            background-color: #ffffff; /* Белый фон */
             font-family: 'Playfair Display', serif;
             display: flex;
             justify-content: center;
@@ -25,89 +25,105 @@
             padding: 40px 20px;
         }
 
-        .top-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 30px;
-            /* Здесь оставь путь к первой картинке с кольцом */
-            content: url('IMG_1687.jpeg'); 
-        }
-
+        /* Имена Станислава и Марии в самом верху */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 4rem; /* Крупный красивый шрифт */
             font-weight: normal;
-            margin: 10px 0;
+            margin: 0 0 20px 0; /* Отступ снизу до картинки */
+            color: #2c3e50;
+        }
+
+        /* Картинка с кольцом ТЕПЕРЬ НИЖЕ имен */
+        .top-image {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            margin-bottom: 40px; /* Отступ до текста "Дорогие гости" */
+            /* Убедись, что картинка называется ring.png и лежит в той же папке */
+            content: url('ring.png'); 
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .guests-text {
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px; /* Сильный разряд для стиля */
             font-size: 1.8rem;
-            margin-top: 40px;
+            margin-top: 0;
             font-weight: 200;
+            color: #555;
         }
 
         .main-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 20px 0 40px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin: 25px 0 50px;
             font-style: italic;
+            color: #666;
         }
 
         /* Стили календаря */
         .calendar-container {
             display: inline-block;
-            background: #f9f9f9;
+            background: #fdfdfd;
             padding: 30px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
         }
 
         .month-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
         }
 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
+            gap: 12px;
             text-align: center;
         }
 
         .day-name {
             font-weight: bold;
-            font-size: 0.8rem;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
+            font-size: 0.85rem;
+            color: #888;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
             margin-bottom: 10px;
         }
 
         .day {
-            padding: 8px;
-            font-size: 1rem;
+            padding: 10px;
+            font-size: 1.1rem;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #444;
         }
 
-        /* Выделение 10 августа */
+        /* Выделение 10 августа 2026 */
         .marked {
-            color: #d13d3d;
+            color: #d13d3d; /* Красный цвет для даты */
             font-weight: bold;
         }
 
+        /* Красное сердечко вокруг даты 10 */
         .marked::after {
             content: '❤';
             position: absolute;
-            font-size: 2.2rem;
-            color: rgba(209, 61, 61, 0.2);
+            font-size: 2.5rem;
+            color: rgba(209, 61, 61, 0.2); /* Полупрозрачное сердечко */
             z-index: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .day span {
@@ -119,9 +135,10 @@
 <body>
 
 <div class="invitation">
-    <img src="ring.png" alt="Станислав и Мария" class="top-image">
     
     <h1>Станислав и Мария</h1>
+
+    <img src="ring.png" alt="Свадебные кольца" class="top-image">
 
     <div class="guests-text">Дорогие гости</div>
     
